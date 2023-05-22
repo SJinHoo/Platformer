@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float jumpPower;
     private int jumpCount = 0;
-    
+
+
 
     private Vector2 inputDir;
 
@@ -46,8 +47,13 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-        animator.SetBool("Jump",true);
+        if (jumpCount < 1)
+        {
+            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            animator.SetBool("Jump",true);
+            jumpCount++;
+        }
+
         
     }
     private void OnMove(InputValue value)
@@ -64,19 +70,14 @@ public class PlayerController : MonoBehaviour
     {
         if (!value.isPressed)
             return;
-        Jump();
-          
-        
+            Jump();  
     }
 
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
         animator.SetBool("IsGround", true);
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            jumpCount = 0;
-        }
+        jumpCount = 0;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
