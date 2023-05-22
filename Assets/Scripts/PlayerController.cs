@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    bool IsJumping;
+    
 
     [SerializeField]
     private float maxSpeed;
@@ -18,9 +18,8 @@ public class PlayerController : MonoBehaviour
     private float movePower;
     [SerializeField]
     private float jumpPower;
-
-    [SerializeField]
-    private LayerMask groundMask;
+    private int jumpCount = 0;
+    
 
     private Vector2 inputDir;
 
@@ -74,11 +73,15 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         animator.SetBool("IsGround", true);
-        
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            jumpCount = 0;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         animator.SetBool("IsGround", false);
+        
     }
 }
