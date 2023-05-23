@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    
+
+    [SerializeField] LayerMask groundLayer;
 
     [SerializeField]
     private float maxSpeed;
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float jumpPower;
     private int jumpCount = 0;
-
+    private bool isGround;
 
 
     private Vector2 inputDir;
@@ -37,6 +38,11 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    private void FixedUpdate()
+    {
+        GroundCheck(); 
+    }
+
     public void Move() 
     {
         if(inputDir.x < 0 && rb.velocity.x >  -maxSpeed)
@@ -50,11 +56,9 @@ public class PlayerController : MonoBehaviour
         if (jumpCount < 1)
         {
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            animator.SetBool("Jump",true);
+            animator.SetBool("Jump", true);
             jumpCount++;
         }
-
-        
     }
     private void OnMove(InputValue value)
     {
@@ -73,11 +77,32 @@ public class PlayerController : MonoBehaviour
             Jump();  
     }
 
-    
+    private void GroundCheck()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, groundLayer); //LayerMask.GetMask()); ;
+        
+        if(hit.collider != null)
+        {
+            isGround = true;
+            jumpCount = 0;
+            animator.SetBool("IsGround", true);
+            Debug.DrawRay(transform.position, new Vector3(hit.point.x, hit.point.y, 0) - transform.position, Color.red);
+        }
+        else
+        {
+            isGround = false;
+            animator.SetBool("IsGround", false);
+            Debug.DrawRay(transform.position, Vector3.down * 1.5f, Color.green);
+        }
+    }
+
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
         animator.SetBool("IsGround", true);
         jumpCount = 0;
+        // if (collision.gameObject.layer == LayerMask.GetMask("Monster")) ;
+        // 몬스터와 충돌시
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -85,4 +110,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsGround", false);
         
     }
+    */
+    
 }
