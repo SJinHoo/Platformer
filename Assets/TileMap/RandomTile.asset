@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
   m_Name: RandomTile
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 21300000, guid: 2fd8385437217cd48b2c4beb43189861, type: 3}
+  m_DefaultSprite: {fileID: 21300000, guid: a49ce33a8158e9c4abd2bb97e29b707c, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
-    - {fileID: 21300000, guid: 3d11f894f86c8904b82cd8a74562125f, type: 3}
-    - {fileID: 21300000, guid: 253f11a4893d87d409c5c14f4d6068f2, type: 3}
-    - {fileID: 21300000, guid: d20fa234518eb1d40821870bf17cbe7d, type: 3}
+    - {fileID: 21300000, guid: a49ce33a8158e9c4abd2bb97e29b707c, type: 3}
+    - {fileID: 21300000, guid: 90b93e97524301b4ea39dbd4ddb65a06, type: 3}
+    - {fileID: 21300000, guid: 60c0444502a7f6d4cbf976688925062c, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1

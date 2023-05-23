@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: AnimationTile
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 21300000, guid: d1218780ed4abca4fa278cdccfd1a18b, type: 3}
-  - {fileID: 21300000, guid: 3ed42e7c21bbcc547a9dfcbf389a3792, type: 3}
+  - {fileID: 21300000, guid: 6b5b060dcf8c18a41bf460556e2fdd84, type: 3}
+  - {fileID: 21300000, guid: 9b802b3cc8186ea44ae49d033148f4ce, type: 3}
   m_MinSpeed: 2
   m_MaxSpeed: 2
   m_AnimationStartTime: 0
