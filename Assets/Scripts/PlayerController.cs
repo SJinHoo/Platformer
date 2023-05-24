@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
     private float movePower;
     [SerializeField]
     private float jumpPower;
-    private int jumpCount = 0;
     private bool isGround;
+    private bool hasJumped;
 
 
     private Vector2 inputDir;
@@ -53,11 +53,11 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (jumpCount < 1)
+        if (!hasJumped && isGround)
         {
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             animator.SetBool("Jump", true);
-            jumpCount++;
+            
         }
     }
     private void OnMove(InputValue value)
@@ -83,8 +83,8 @@ public class PlayerController : MonoBehaviour
         
         if(hit.collider != null)
         {
+            hasJumped = false;
             isGround = true;
-            jumpCount = 0;
             animator.SetBool("IsGround", true);
             Debug.DrawRay(transform.position, new Vector3(hit.point.x, hit.point.y, 0) - transform.position, Color.red);
         }
