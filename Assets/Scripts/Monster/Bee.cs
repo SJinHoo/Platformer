@@ -27,7 +27,7 @@ public class Bee : MonoBehaviour
 
     private void Awake()
     {
-        states = 
+        states = new StateBase[(int)State.Size];
         states[(int)State.Idle] = new IdleState(this);
         states[(int)State.Trace] = new TraceState(this);
         states[(int)State.Return] = new ReturnState(this);
@@ -52,6 +52,8 @@ public class Bee : MonoBehaviour
     {
 
     }
+
+
 }
 
 
